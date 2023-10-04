@@ -64,6 +64,18 @@ Contributing
 
 Feel free to contribute to this project by adding new features, fixing bugs, or improving the documentation. To contribute, simply fork the repository and make your changes. Once you are finished, create a pull request and we will review your changes.
 
+Limitations
+
+The ALX Simple Shell has some limitations:
+
+It does not support advanced shell features such as shell scripting, environment variable expansion, or shell built-in functions.
+It does not handle complex command structures such as quotes or escape characters.
+It does not implement all POSIX shell specifications.
+About
+ALX Simple Shell was developed by Samuel Ayitey and Mariam Yoda as part of the ALX Software Engineering program. It is provided as-is without any warranty or guarantee of fitness for any particular purpose. You are free to use, modify, and distribute this software according to the terms of the MIT License.
+
+For bug reports or suggestions, please contact ayitey.samuel@gmail.com or myoda067@gmail.com.
+
 License
 
 This project is licensed under the MIT License.
