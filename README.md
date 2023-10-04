@@ -1,0 +1,69 @@
+ALX Simple Shell Project
+
+This project is a simple shell interpreter written in C. It is designed to mimic the sh shell and provides an interface between the user and the kernel by executing commands.
+
+Features
+
+Displays a prompt and waits for the user to type a command.
+Executes basic commands, such as ls, cd, and pwd.
+Supports the exit command.
+Supports the PATH environment variable.
+Supports comments (#).
+Supports the history feature.
+Supports file input.
+
+Builtins
+
+The following builtins are currently implemented:
+
+exit: Exit the shell, with an optional exit status.
+env: Print the environment.
+setenv: Set an environment variable.
+unsetenv: Remove an environment variable.
+cd: Change the directory.
+help: Get documentation for a built-in.
+Usage
+
+To build the shell, run the following command:
+
+make
+
+To run the shell, simply type the following command:
+
+./seashell
+
+Once the shell is running, you can type commands at the prompt. To exit the shell, type exit.
+
+Examples
+
+# List the contents of the current directory
+
+ls
+
+# Change to the home directory
+
+cd ~
+
+# Print the environment
+
+env
+
+# Set the environment variable FOO to the value BAR
+
+setenv FOO BAR
+
+# Remove the environment variable FOO
+
+unsetenv FOO
+
+# Exit the shell
+
+exit
+
+Contributing
+
+Feel free to contribute to this project by adding new features, fixing bugs, or improving the documentation. To contribute, simply fork the repository and make your changes. Once you are finished, create a pull request and we will review your changes.
+
+License
+
+This project is licensed under the MIT License.
