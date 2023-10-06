@@ -1,19 +1,19 @@
-#include "shell.h"
+#include <unistd.h>
 
 /**
  * _write: write to either stdin, stdout, or stderr
  *
  * @str: pointer to characters of array
- * @stm: where to print to (stdin, stdout or stderr)
+ * @fd: a file descriptor(stdin, stdout or stderr)
  *
  * Return: nothing
  */
-void _write(char *str, int stm)
+void _write(char *str, int fd)
 {
-	int index = 0;
+	int j = 0;
 
-	for (; str[index]; index++)
+	for (; str[j]; j++)
 	{
-		write(stm, &str[index], 1);
+		write(fd, &str[j], 1);
 	}
 }
