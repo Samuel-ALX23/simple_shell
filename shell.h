@@ -12,6 +12,8 @@
 #include <dirent.h>
 #include <signal.h>
 
+void _write(char *str, int stm);
+
 int main(int ac, char **av, char **env);
 char *_getenv(const char *name);
 int _setenv(const char *name, const char *value, int overwrite);
