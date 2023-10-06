@@ -1,6 +1,6 @@
 ALX Simple Shell Project
 
-This project is a simple shell interpreter written in C. It is designed to mimic the sh shell and provides an interface between the user and the kernel by executing commands.
+This project is a simple shell interpreter written in C. It is designed to imitate the sh shell and provide an interface between the user and the kernel by executing commands.
 
 Features
 
