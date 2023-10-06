@@ -1,10 +1,13 @@
 #include "shell.h"
+
 /**
+ * tokenize - Tokenizes a string based on delimiters
+ * @command: The string to be tokenized
+ * @delim: The string containing delimiters
  *
- *
- *
- *
+ * Return: A pointer to an array of tokenized strings, or NULL on failure
  */
+
 char **tokenize(char *command, char *delim)
 {
 	char *index = NULL;
@@ -16,14 +19,14 @@ char **tokenize(char *command, char *delim)
 	temp = strdup(command);
 	index = strtok(temp, delim);
 
-	while(index)
+	while (index)
 	{
 		index_count++;
 		index = strtok(NULL, " \t");
 
-		write(1, command, index_count);
+		_write(1, command, index_count);
 
-		command_tok = malloc(sizeof(char*) * (index_count) + 1);
+		command_tok = malloc(sizeof(char *) * (index_count) + 1);
 		if (command_tok == NULL)
 		{
 			return (NULL);
@@ -31,15 +34,15 @@ char **tokenize(char *command, char *delim)
 
 		index = strtok(command, delim);
 		i = 0;
-		while(index)
+		while (index)
 		{
 			command_tok[i] = index;
 			index = strtok(NULL, delim);
 			i++;
 		}
-		command_tok[i] =NULL;
+		command_tok[i] = NULL;
 		free(temp);
 	}
 
-		return(command_tok);
+	return (command_tok);
 }
