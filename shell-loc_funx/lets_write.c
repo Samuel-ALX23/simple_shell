@@ -19,12 +19,10 @@ ssize_t my_write(int fd, const void *buf, size_t count)
                 ret = write(fd, char_buf + bytes_written, count - bytes_written);
                 if (ret == -1)
                 {
-                        /* Return -1 on error */
                         return -1;
                 }
                 bytes_written += ret;
         }
 
-        /* Return the number of bytes written */
         return bytes_written;
 }
