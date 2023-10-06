@@ -1,6 +1,7 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -12,9 +13,10 @@
 #include <dirent.h>
 #include <signal.h>
 
-int main(int ac, char **av, char **env);
-char *_getenv(const char *name);
+/*int main(int ac, char **av, char **env);*/
+char **tokenize(char *command, char *delim);
+/*char *_getenv(const char *name);
 int _setenv(const char *name, const char *value, int overwrite);
-int _unsetenv(const char *name);
+int _unsetenv(const char *name);*/
 
 #endif
