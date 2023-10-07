@@ -14,12 +14,12 @@ int main(int ac __attribute__((unused)), char *av[] __attribute__((unused)), cha
 	char *command = NULL;
 	char **command_tok = NULL;
 	size_t size = 0;
-	ssize_t get_byte = 0;
+	size_t get_byte = 0;
 	int i = 0;
 
 	while (1)
 	{
-		_write(1, "|_>$ ", 5);
+		write(1, "|_>$ ", 5);
 		get_byte = getline(&command, &size, stdin);
 		if (get_byte == -1)
 		{
@@ -28,7 +28,7 @@ int main(int ac __attribute__((unused)), char *av[] __attribute__((unused)), cha
 			break;
 		}
 		else
-			_write(1, command, get_byte);
+			write(1, command, get_byte);
 		i = 0;
 		while (command[i])
 		{
@@ -38,9 +38,12 @@ int main(int ac __attribute__((unused)), char *av[] __attribute__((unused)), cha
 
 		}
 		command_tok = tokenize(command, " \t");
-		command = NULL;
-		free(command);
+
+		 command = NULL;
+		
+			free(command);
 	}
+	free(command);
 	free(command_tok);
 	return (0);
 }

@@ -23,7 +23,7 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 
 /*char *_getenv(const char *name);*/
-void _write(char *str, int fd);
+/*void _write(char *str, int fd);*/
 
 int main(int ac, char **av, char **env);
 /*char *_getenv(const char *name);

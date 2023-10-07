@@ -24,7 +24,7 @@ char **tokenize(char *command, char *delim)
 		index_count++;
 		index = strtok(NULL, " \t");
 
-		_write(1, command, index_count);
+		write(1, command, index_count);
 
 		command_tok = malloc(sizeof(char *) * (index_count) + 1);
 		if (command_tok == NULL)
@@ -41,8 +41,10 @@ char **tokenize(char *command, char *delim)
 			i++;
 		}
 		command_tok[i] = NULL;
-		free(temp);
-	}
+		
+			free(command_tok[i]);
 
+	}
+		free(temp); 
 	return (command_tok);
 }
