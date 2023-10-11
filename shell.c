@@ -1,5 +1,15 @@
 #include "shell.h"
 
+/**
+ * main - Entry point of the program.
+ *
+ * Description: This function serves as the entry point of the program that
+ * implements a simple command-line interpreter.
+ *
+ * Return: 0 always(sucess)
+ */
+
+int main(void);
 int main(void)
 {
 	char **tokens = NULL;
@@ -10,7 +20,7 @@ int main(void)
 	int terminal = 1;
 	ssize_t get_byte = 0;
 
-	while (1) 
+	while (1)
 	{
 		terminal = isatty(STDIN_FILENO);
 		tokens =  malloc(10 * sizeof(char *));
@@ -20,7 +30,7 @@ int main(void)
 		i = 0;
 		get_byte = getline(&command, &size, stdin);
 		index = strtok(command, "\n\t\r");
-		while(index)
+		while (index)
 		{
 			tokens[i] = malloc(sizeof(char) * (strlen(index) + 1));
 			if (!tokens[i])
@@ -32,7 +42,7 @@ int main(void)
 			i++;
 			index = strtok(NULL, "\n\t\r");
 		}
-		if(i == 0)
+		if (i == 0)
 		{
 			free(tokens);
 			continue;
@@ -47,7 +57,7 @@ int main(void)
 
 		exe_process(tokens);
 
-		if(get_byte > 1)
+		if (get_byte > 1)
 		{
 			if (tokens[0] != NULL)
 			{
@@ -56,7 +66,7 @@ int main(void)
 		}
 
 	}
-	if(command != NULL)
+	if (command != NULL)
 		free(command);
 	return (0);
 }
