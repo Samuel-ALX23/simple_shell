@@ -2,30 +2,24 @@
 
 
 
-void exe_cmd(char **args) 
+void exe_process(char **tokens) 
 {
-    pid_t pid;
-    int status;
+    pid_t pid = getpid();
+    int status = 0;
   extern char **environ;
-    char *com_path = NULL;
+   /* char *com_path = NULL;*/
 
-  com_path = fetch_path(args[0]);
-    if (com_path == NULL) 
-    {
-       perror ("Path: command not found");
-        return;
-    }
+ /* com_path = fetch_path(tokens[0]);*/
+
 
     pid = fork();
       if(pid == 0)
     {
-      if (execve(args[0], args, environ) == -1)
-        {
+	if (execve(tokens[0], tokens, environ))
             perror("ERROR: Child_fork failed");
-        }
         exit(2);
     } 
-    else if (pid < 0) 
+    else if  (pid < 0) 
     {
         perror("ERROR: fork error");
     } 
@@ -33,6 +27,4 @@ void exe_cmd(char **args)
     {
         wait(&status);
     }
-    free(com_path);
 }
-

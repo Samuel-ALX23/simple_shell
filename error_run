@@ -1,0 +1,1 @@
+gcc -g -fsanitize=address *.c -Wall -Werror -Wextra -pedantic -std=gnu89 -o hsh && ./hsh

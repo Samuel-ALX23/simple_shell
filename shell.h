@@ -4,16 +4,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stddef.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <errno.h>
 #include <sys/wait.h>
 #include <fcntl.h>
 
-void exe_cmd(char **args);
-char *fetch_path(char *sh);
-char *tokenizer(char *command);
-int check_variable(char **args);
+void freeus(char **tokens);
+void exe_process(char **args);
+/*char *fetch_path(char **av, char **en);*/
+char *tokenizer();
+int check_strcp(char **args);
 extern char **environ;
+void env(void);
 
 #endif
 
