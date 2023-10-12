@@ -31,6 +31,7 @@ void exe_process(char **tokens)
 	else if  (pid < 0)
 	{
 		perror("ERROR: fork error");
+		exit(2);
 	}
 	else
 	{

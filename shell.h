@@ -11,6 +11,13 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
+typedef struct {
+        char *code;
+        char *command;
+        char *arg;
+}StructCommand;
+
+
 void freeus(char **tokens);
 void exe_process(char **args);
 /*char *fetch_path(char **av, char **en);*/

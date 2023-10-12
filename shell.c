@@ -52,7 +52,7 @@ int main(void)
 		check_strcp(tokens);
 
 		if (terminal == 1)
-			break;
+			continue;
 
 
 		exe_process(tokens);
