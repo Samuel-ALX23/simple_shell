@@ -10,21 +10,25 @@
 #include <errno.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <sys/stat.h>
 
-typedef struct {
+
+/*typedef struct {
         char *code;
         char *command;
         char *arg;
-}StructCommand;
+}StructCommand;*/
 
 
 void freeus(char **tokens);
-void exe_process(char **args);
-/*char *fetch_path(char **av, char **en);*/
-char *tokenizer();
+void env(void);
+extern char **environ;
+void procmd(char **args);
+char *fetch_path(char *cmd);
+/*char *tokenizer();
 int check_strcp(char **args);
 extern char **environ;
-void env(void);
+void env(void);*/
 
 #endif
 

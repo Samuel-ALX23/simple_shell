@@ -1,72 +1,69 @@
 #include "shell.h"
-
 /**
- * main - Entry point of the program.
  *
- * Description: This function serves as the entry point of the program that
- * implements a simple command-line interpreter.
  *
- * Return: 0 always(sucess)
+ *
+ *
+ *
+ *
+ *
  */
-
-int main(void);
-int main(void)
+int main(__attribute__((unused))int ac, char **argv)
 {
-	char **tokens = NULL;
 	char *command = NULL;
-	size_t size = 0;
-	int i = 0;
+	char *tokens = NULL;
 	char *index = NULL;
-	int terminal = 1;
+	int interactive = 1;
+	size_t size = 0;
 	ssize_t get_byte = 0;
+	int i = 0;
+	int num_tok = 0;
 
-	while (1)
+	while(1)
 	{
-		terminal = isatty(STDIN_FILENO);
-		tokens =  malloc(10 * sizeof(char *));
-		if (terminal != 0)
+		interactive = isatty(STDIN_FILENO);
+		if (interactive != 0)
 
-			write(1, "$ ", 2);
-		i = 0;
+		write(1, "$ ", 2);
 		get_byte = getline(&command, &size, stdin);
-		index = strtok(command, "\n\t\r");
-		while (index)
+		if (get_byte == -1)
 		{
-			tokens[i] = malloc(sizeof(char) * (strlen(index) + 1));
-			if (!tokens[i])
-			{
-				perror("ERROR: Memory allocation failed");
-				exit(2);
-			}
-			strcpy(tokens[i], index);
-			i++;
+			perror("ERROR: Reading line fail");
+			return(-1);
+		}
+		tokens = malloc(get_byte * sizeof(char));
+		if(!tokens)
+		{
+			perror("ERROR: Allocation failed");
+			return (-1);
+		}
+		strcpy(tokens, command);
+		index = strtok(command, "\n\t\r");
+		while(index)
+		{
+			num_tok++;
+			index = strtok(NULL, "\n\t\r");
+
+		}
+		num_tok++;
+
+		argv = malloc(num_tok * sizeof(char *));
+		index = strtok(tokens, "\n\t\r");
+		
+		i = 0;
+		for(; index; i++)
+		{
+			argv[i] = malloc(sizeof(char) *strlen(index));
+			strcpy(argv[i], index);
 			index = strtok(NULL, "\n\t\r");
 		}
-		if (i == 0)
-		{
-			free(tokens);
-			continue;
-		}
-		tokens[i] = NULL;
+		argv[i] = NULL;
+		if (interactive == 1)
+                        continue;
 
-		check_strcp(tokens);
-
-		if (terminal == 1)
-			continue;
-
-
-		exe_process(tokens);
-
-		if (get_byte > 1)
-		{
-			if (tokens[0] != NULL)
-			{
-				freeus(tokens);
-			}
-		}
-
+		procmd(argv);
 	}
-	if (command != NULL)
-		free(command);
+	free(tokens);
+	free(command);
 	return (0);
 }
