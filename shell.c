@@ -38,32 +38,34 @@ int main(__attribute__((unused))int ac, char **argv)
 			return (-1);
 		}
 		strcpy(tokens, command);
-		index = strtok(command, "\n\t\r");
+		index = strtok(command, " \n\t\r");
 		while(index)
 		{
 			num_tok++;
-			index = strtok(NULL, "\n\t\r");
+			index = strtok(NULL, " \n\t\r");
 
 		}
 		num_tok++;
 
 		argv = malloc(num_tok * sizeof(char *));
-		index = strtok(tokens, "\n\t\r");
+		index = strtok(tokens, " \n\t\r");
 		
 		i = 0;
 		for(; index; i++)
 		{
 			argv[i] = malloc(sizeof(char) *strlen(index));
 			strcpy(argv[i], index);
-			index = strtok(NULL, "\n\t\r");
+			index = strtok(NULL, " \n\t\r");
 		}
 		argv[i] = NULL;
-		if (interactive == 1)
-                        continue;
 
 		procmd(argv);
+		if (interactive == 1)
+                       continue;
+
 	}
 	free(tokens);
 	free(command);
+
 	return (0);
 }

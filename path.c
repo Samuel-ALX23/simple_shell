@@ -18,12 +18,19 @@ char *fetch_path(char *cmd)
 	struct stat buf;
 
 	path = getenv("PATH");
+	cmd = strtok(cmd, " \n\t\r");
+
+	
 	if(path)
-	{
+	{	if(strchr(cmd, '/'))
+		{
+		return (cmd);
+		}
 		double_path = strdup(path);
 		cmd_len = strlen(cmd);
 
 		tokpath = strtok(double_path, ":");
+		
 
 		while(tokpath)
 		{

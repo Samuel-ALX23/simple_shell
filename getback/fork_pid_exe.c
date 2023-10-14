@@ -11,20 +11,21 @@
  * Return: void as (sucess);
  */
 
-void exe_process(char **tokens)
+void exe_process(char **argv)
 {
-	pid_t pid = getpid();
+	pid_t pid;
 	int status = 0;
 	extern char **environ;
-	/* char *com_path = NULL;*/
+	char *cmd = argv[0];
+	char *process_cmd = NULL;
 
-	/* com_path = fetch_path(tokens[0]);*/
+	process_cmd = fetch_path(cmd);
 
 
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(tokens[0], tokens, environ))
+		if (execve(process_cmd, argv, environ) == -1)
 			perror("ERROR: Child_fork failed");
 		exit(2);
 	}
