@@ -28,7 +28,7 @@ int main(__attribute__((unused))int ac, char **argv)
 		interactive = isatty(STDIN_FILENO);
 		if (interactive != 0)
 
-			write(1, "$ ", 2);
+		write(1, "$ ", 2);
 		get_byte = getline(&command, &size, stdin);
 		if (get_byte == -1)
 		{
@@ -36,9 +36,9 @@ int main(__attribute__((unused))int ac, char **argv)
 			free(command);
 			return (-1);
 		}
-		input = strdup(command);
-		token = strtok(input, " ");
-		if (strcmp(token, "\n") == 0)
+		input = my_strdup(command);
+		token = my_strtok(input, " ");
+		if (my_strcmp(token, "\n") == 0)
 		{
 			free(input);
 			free(command);
@@ -54,12 +54,12 @@ int main(__attribute__((unused))int ac, char **argv)
 			free(input);
 			return (-1);
 		}
-		strcpy(tokens, command);
-		index = strtok(command, " \n\t\r");
+		my_strcpy(tokens, command);
+		index = my_strtok(command, " \n\t\r");
 		while (index)
 		{
 			num_tok++;
-			index = strtok(NULL, " \n\t\r");
+			index = my_strtok(NULL, " \n\t\r");
 		}
 		num_tok++;
 
@@ -67,28 +67,27 @@ int main(__attribute__((unused))int ac, char **argv)
 		if (!argv)
 		{
 			perror("ERROR: Allocation failed");
-			free(command);
 			free(input);
 			free(argv);
 			free(tokens);
 			return (-1);
 		}
-		index = strtok(tokens, " \n\t\r");
+		index = my_strtok(tokens, " \n\t\r");
 
 		i = 0;
 		argv[i] = index;
 		i++;
-		index = strtok(NULL, " \n\t\r");
+		index = my_strtok(NULL, " \n\t\r");
 		for (; index; i++)
 		{
 			argv[i] = index;
-			index = strtok(NULL, " \n\t\r");
+			index = my_strtok(NULL, " \n\t\r");
 		}
 		argv[i] = NULL;
 
 		procmd(argv);
 		if (interactive == 0)
-			break;
+		break;
 	}
 	free(input);
 	free(tokens);

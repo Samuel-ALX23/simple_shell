@@ -12,6 +12,13 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
+int my_strcmp(const char *str1, const char *str2);
+size_t my_strlen(const char* str);
+char* my_strcpy(char* targ, const char* src);
+char* my_strdup(const char * src);
+char* my_strcat(char* targ, const char* src);
+char* my_strtok(char * str, const char * delim);
+
 void freeus(char **tokens);
 void env(void);
 extern char **environ;

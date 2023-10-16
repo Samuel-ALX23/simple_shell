@@ -19,15 +19,14 @@ void procmd(char **argv)
 		cmd = argv[0];
 		process_cmd = fetch_path(cmd);
 
-		if (strcmp(cmd, "exit") == 0)
+		if (my_strcmp(cmd, "exit") == 0)
 		{
 			free(cmd);
 			exit(0);
 		}
-		if (strcmp(cmd, "env") == 0)
+		if (my_strcmp(cmd, "env") == 0)
 		{
 			env();
-			free(cmd);
 			return;
 		}
 		argv[0] = process_cmd;
