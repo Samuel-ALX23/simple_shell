@@ -27,7 +27,6 @@ void procmd(char **argv)
 		if (strcmp(cmd, "env") == 0)
 		{
 			env();
-			free(cmd);
 			return;
 		}
 		argv[0] = process_cmd;

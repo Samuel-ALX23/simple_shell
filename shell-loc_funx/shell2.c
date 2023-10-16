@@ -22,6 +22,7 @@ int main(__attribute__((unused))int ac, char **argv)
 	int num_tok = 0;
 	char *input = NULL;
 	char *token = NULL;
+	 char *temp = NULL;
 
 	while (1)
 	{
@@ -37,7 +38,7 @@ int main(__attribute__((unused))int ac, char **argv)
 			return (-1);
 		}
 		input = strdup(command);
-		token = strtok(input, " ");
+		token = strtok(input, " \n");
 		if (strcmp(token, "\n") == 0)
 		{
 			free(input);
@@ -55,6 +56,7 @@ int main(__attribute__((unused))int ac, char **argv)
 			return (-1);
 		}
 		strcpy(tokens, command);
+		temp  = command;
 		index = strtok(command, " \n\t\r");
 		while (index)
 		{
@@ -62,6 +64,7 @@ int main(__attribute__((unused))int ac, char **argv)
 			index = strtok(NULL, " \n\t\r");
 		}
 		num_tok++;
+		free(temp);
 
 		argv = malloc(num_tok * sizeof(char *));
 		if (!argv)
@@ -89,9 +92,9 @@ int main(__attribute__((unused))int ac, char **argv)
 		if (interactive == 0)
 			break;
 	}
-	free(input);
+	/*free(input);*/
 	free(tokens);
-	free(command);
+	/*free(command);*/
 
 	return (0);
 }
