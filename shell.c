@@ -8,20 +8,15 @@
  *
  * Return: 0 always(sucess)
  */
-
-int main(__attribute__((unused))int ac, char **argv);
-int main(__attribute__((unused))int ac, char **argv)
+int main(void)
 {
 	char *command = NULL;
-	char *tokens = NULL;
+	char *argv[1024] = {NULL};
 	char *index = NULL;
 	int interactive = 1;
 	size_t size = 0;
 	ssize_t get_byte = 0;
 	int i = 0;
-	int num_tok = 0;
-	char *input = NULL;
-	char *token = NULL;
 
 	while (1)
 	{
@@ -34,64 +29,37 @@ int main(__attribute__((unused))int ac, char **argv)
 		{
 			perror("ERROR: Reading line fail");
 			free(command);
-			return (-1);
+			exit(0);
 		}
-		input = strdup(command);
-		token = strtok(input, " ");
-		if (strcmp(token, "\n") == 0)
-		{
-			free(input);
-			free(command);
-			continue;
-		}
-
-		tokens = malloc((get_byte + 1) * sizeof(char));
-		if (!tokens)
-		{
-			perror("ERROR: Allocation failed");
-			free(command);
-			free(tokens);
-			free(input);
-			return (-1);
-		}
-		strcpy(tokens, command);
 		index = strtok(command, " \n\t\r");
-		while (index)
-		{
-			num_tok++;
-			index = strtok(NULL, " \n\t\r");
-		}
-		num_tok++;
-
-		argv = malloc(num_tok * sizeof(char *));
-		if (!argv)
-		{
-			perror("ERROR: Allocation failed");
-			free(input);
-			free(argv);
-			free(tokens);
-			return (-1);
-		}
-		index = strtok(tokens, " \n\t\r");
-
-		i = 0;
-		argv[i] = index;
-		i++;
-		index = strtok(NULL, " \n\t\r");
-		for (; index; i++)
+		for (i = 0; index; i++)
 		{
 			argv[i] = index;
 			index = strtok(NULL, " \n\t\r");
+
 		}
 		argv[i] = NULL;
+		i = 0;
+		if (argv[0] == NULL)
+			continue;
+		if (strcmp(argv[0], "exit") == 0)
+		{
+			free(command);
+			exit(0);
+		}
+		if (strcmp(argv[0], "env") == 0)
+		{
+			env();
+			continue;
+		}
 
-		procmd(argv);
+
+
+		procmd(argv, command);
 		if (interactive == 0)
 			break;
+		continue;
 	}
-	free(input);
-	free(tokens);
-	free(command);
 
 	return (0);
 }

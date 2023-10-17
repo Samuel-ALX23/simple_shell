@@ -15,7 +15,7 @@
 void freeus(char **tokens);
 void env(void);
 extern char **environ;
-void procmd(char **args);
+void procmd(char **args, char *cmd);
 char *fetch_path(char *cmd);
 
 #endif
