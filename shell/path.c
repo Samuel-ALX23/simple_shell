@@ -28,20 +28,26 @@ char *fetch_path(char *cmd)
 		{
 			return (cmd);
 		}
+<<<<<<<< HEAD:shell/shell-loc_funx/path.c
 		/*double_path = strdup(path);*/
 	/*	cmd_len = strlen(cmd);
 
 		tokpath = strtok(path, ":");
+========
+		double_path = my_strdup(path);
+		cmd_len = my_strlen(cmd);
+>>>>>>>> 42e538268198e44c8550bf289bc7b8b08dd47f03:shell/path.c
 
+		tokpath = my_strtok(double_path, ":");
 
 		while(tokpath)
 		{
-			dir_len = strlen(tokpath);
+			dir_len = my_strlen(tokpath);
 			filepath = malloc(cmd_len + dir_len + 2);
-			strcpy(filepath, tokpath);
-			strcat(filepath, "/");
-			strcat(filepath, cmd);
-			strcat(filepath, "\0");
+			my_strcpy(filepath, tokpath);
+			my_strcat(filepath, "/");
+			my_strcat(filepath, cmd);
+			my_strcat(filepath, "\0");
 
 			if (stat(filepath, &buf) == 0)
 			{
@@ -52,17 +58,20 @@ char *fetch_path(char *cmd)
 			else
 			{
 				free(filepath);
-				tokpath = strtok(NULL, ":");
+				tokpath = my_strtok(NULL, ":");
 			}
-
 		}
 		free(double_path);
 		if (stat(cmd, &buf) == 0)
 		{
 			return (cmd);
 		}
+<<<<<<<< HEAD:shell/shell-loc_funx/path.c
 		return (NULL);*/
 
+========
+		return (NULL);
+>>>>>>>> 42e538268198e44c8550bf289bc7b8b08dd47f03:shell/path.c
 	}
 	return (NULL);
 }

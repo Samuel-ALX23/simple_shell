@@ -27,7 +27,7 @@ void freeus(char **tokens)
 		}
 
 	}
-	if (tokens != NULL)
 
-		free(tokens);
+	if (tokens != NULL)
+	free(tokens);
 }

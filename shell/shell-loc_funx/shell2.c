@@ -29,7 +29,7 @@ int main(__attribute__((unused))int ac, char **argv)
 		interactive = isatty(STDIN_FILENO);
 		if (interactive != 0)
 
-			write(1, "$ ", 2);
+		write(1, "$ ", 2);
 		get_byte = getline(&command, &size, stdin);
 		if (get_byte == -1)
 		{
@@ -37,9 +37,15 @@ int main(__attribute__((unused))int ac, char **argv)
 			free(command);
 			return (-1);
 		}
+<<<<<<< HEAD:shell.c
+		input = my_strdup(command);
+		token = my_strtok(input, " ");
+		if (my_strcmp(token, "\n") == 0)
+=======
 		input = strdup(command);
 		token = strtok(input, " \n");
 		if (strcmp(token, "\n") == 0)
+>>>>>>> cec26668c2b4b10d1dd47ff98a6f81ec2e002e29:shell-loc_funx/shell2.c
 		{
 			free(input);
 			free(command);
@@ -55,13 +61,18 @@ int main(__attribute__((unused))int ac, char **argv)
 			free(input);
 			return (-1);
 		}
+<<<<<<< HEAD:shell.c
+		my_strcpy(tokens, command);
+		index = my_strtok(command, " \n\t\r");
+=======
 		strcpy(tokens, command);
 		temp  = command;
 		index = strtok(command, " \n\t\r");
+>>>>>>> cec26668c2b4b10d1dd47ff98a6f81ec2e002e29:shell-loc_funx/shell2.c
 		while (index)
 		{
 			num_tok++;
-			index = strtok(NULL, " \n\t\r");
+			index = my_strtok(NULL, " \n\t\r");
 		}
 		num_tok++;
 		free(temp);
@@ -75,22 +86,22 @@ int main(__attribute__((unused))int ac, char **argv)
 			free(tokens);
 			return (-1);
 		}
-		index = strtok(tokens, " \n\t\r");
+		index = my_strtok(tokens, " \n\t\r");
 
 		i = 0;
 		argv[i] = index;
 		i++;
-		index = strtok(NULL, " \n\t\r");
+		index = my_strtok(NULL, " \n\t\r");
 		for (; index; i++)
 		{
 			argv[i] = index;
-			index = strtok(NULL, " \n\t\r");
+			index = my_strtok(NULL, " \n\t\r");
 		}
 		argv[i] = NULL;
 
 		procmd(argv);
 		if (interactive == 0)
-			break;
+		break;
 	}
 	/*free(input);*/
 	free(tokens);
