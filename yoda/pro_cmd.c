@@ -16,7 +16,7 @@ void procmd(char **argv, char *cmd)
 	pid = fork();
 	if (pid == 0)
 	{
-		if(strcmp(argv[0], "ls") == 0)
+		if (my_strcmp(argv[0], "ls") == 0)
 		{
 			if (execve("/bin/ls", argv, environ) == -1)
 			{
@@ -29,10 +29,10 @@ void procmd(char **argv, char *cmd)
 		{
 
 			if (execve(argv[0], argv, environ) == -1)
-			{	
-				write(2, "./hsh: 1: ", 10); 
-				write(2, argv[0], strlen(argv[0]));
-				write(2,": not found\n", 12);
+			{
+				my_write(2, "./hsh: 1: ", 10);
+				my_write(2, argv[0], strlen(argv[0]));
+				my_write(2, ": not found\n", 12);
 				free(cmd);
 				exit(2);
 			}

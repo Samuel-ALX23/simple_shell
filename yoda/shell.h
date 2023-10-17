@@ -18,5 +18,10 @@ extern char **environ;
 void procmd(char **args, char *cmd);
 char *fetch_path(char *cmd);
 
+char *my_strtok(char *str, const char *delim);
+size_t my_strlen(const char *str);
+int my_strcmp(const char *str1, const char *str2);
+ssize_t my_write(int fd, const void *buf, size_t count);
+
 #endif
 
