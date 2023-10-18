@@ -8,43 +8,24 @@
  *
  * Return: num_chars always(success)
  */
-
-ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
+ssize_t my_getline(char *lineptr, size_t size, FILE *stream)
 {
-	if (lineptr == NULL || n == NULL || stream == NULL)
+	if (lineptr == NULL || stream == NULL || size == 0)
 	{
 		return (-1);
 	}
 
-	size_t capacity = *n;
 	ssize_t num_chars = 0;
 	int c;
 
-	if (*lineptr == NULL)
-	{
-		capacity = 128;
-		*lineptr = malloc(capacity);
-		if (*lineptr == NULL)
-		{
-			return (-1);
-		}
-	}
-
 	while ((c = fgetc(stream)) != EOF)
 	{
-		if (num_chars >= capacity - 1)
+		if (num_chars >= size - 1)
 		{
-			capacity *= 2;
-			char *temp = realloc(*lineptr, capacity);
-			if (temp == NULL)
-			{
-				return (-1);
-			}
-			*lineptr = temp;
-			*n = capacity;
+			break;
 		}
 
-		(*lineptr)[num_chars] = c;
+		lineptr[num_chars] = c;
 		num_chars++;
 
 		if (c == '\n')
@@ -58,7 +39,16 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 		return (-1);
 	}
 
-	(*lineptr)[num_chars] = '\0';
+	lineptr[num_chars] = '\0';
+
+	if (c != '\n' && c != EOF)
+	{
+		int discard;
+		while ((discard = fgetc(stream)) != '\n' && discard != EOF)
+		{
+
+		}
+	}
 
 	return (num_chars);
 }
