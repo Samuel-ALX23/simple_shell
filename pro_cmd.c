@@ -13,6 +13,7 @@ void procmd(char **argv, char *cmd)
 	pid_t pid;
 	int status = 0;
 
+	(void)cmd;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -21,7 +22,7 @@ void procmd(char **argv, char *cmd)
 			if (execve("/bin/ls", argv, environ) == -1)
 			{
 				perror("./hsh");
-				free(cmd);
+				/*free(cmd);*/
 				exit(2);
 			}
 		}
@@ -33,7 +34,7 @@ void procmd(char **argv, char *cmd)
 				my_write(2, "./hsh: 1: ", 10);
 				my_write(2, argv[0], my_strlen(argv[0]));
 				my_write(2, ": not found\n", 12);
-				free(cmd);
+				/*free(cmd);*/
 				exit(2);
 			}
 		}

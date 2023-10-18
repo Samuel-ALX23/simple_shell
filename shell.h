@@ -13,7 +13,7 @@
 #include <sys/stat.h>
 
 void freeus(char **tokens);
-void env(void);
+void _env(void);
 extern char **environ;
 void procmd(char **args, char *cmd);
 char *fetch_path(char *cmd);

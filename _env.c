@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * env - Prints the environment variables
+ * _env - Prints the environment variables
  *
  * Description: This function prints all the environment variables
  * to the standard output, with each variable on a new line
@@ -9,7 +9,7 @@
  * REturn: void as (sucess)
  */
 
-void env(void)
+void _env(void)
 {
 	int i = 0;
 

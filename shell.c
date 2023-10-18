@@ -46,13 +46,13 @@ int main(void)
 		}
 		if (my_strcmp(argv[0], "env") == 0)
 		{
-			env();
+			_env();
 			continue;
 		}
 		procmd(argv, command);
 		if (interactive == 0)
 			break;
-		continue;
+		/*continue;*/
 	}
 
 	return (0);
