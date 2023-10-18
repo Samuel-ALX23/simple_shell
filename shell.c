@@ -22,7 +22,7 @@ int main(void)
 		interactive = isatty(STDIN_FILENO);
 		if (interactive != 0)
 
-			write(1, "$ ", 2);
+			/*write(1, "$ ", 2);*/
 		get_byte = getline(&command, &size, stdin);
 		if (get_byte == -1)
 		{
