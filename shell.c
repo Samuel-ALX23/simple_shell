@@ -43,7 +43,7 @@ int main(void)
 		if (my_strcmp(argv[0], "exit") == 0)
 		{
 			free(command);
-			exit(0);
+			exit(1);
 		}
 		if (my_strcmp(argv[0], "env") == 0)
 		{
