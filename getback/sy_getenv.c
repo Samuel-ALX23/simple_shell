@@ -9,7 +9,6 @@
 
 char *my_getenv(const char *varname)
 {
-	extern char **environ;
 	size_t varname_len = my_strlen(varname);
 
 	if (varname == NULL || environ == NULL)
