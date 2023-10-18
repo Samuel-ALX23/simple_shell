@@ -9,7 +9,7 @@ int main(void);
 int main(void)
 {
 	char *command = NULL;
-	char *argv[1024] = {NULL};
+	char *argv[6000] = {NULL};
 	char *index = NULL;
 	char cwd[1024];
 	int interactive = 1;
@@ -30,11 +30,11 @@ int main(void)
 			free(command);
 			exit(0);
 		}
-		index = my_strtok(command, " \n\t\r");
+		index = strtok(command, " \n\t\r");
 		for (i = 0; index; i++)
 		{
 			argv[i] = index;
-			index = my_strtok(NULL, " \n\t\r");
+			index = strtok(NULL, " \n\t\r");
 
 		}
 		argv[i] = NULL;
@@ -49,27 +49,6 @@ int main(void)
 		if (my_strcmp(argv[0], "env") == 0)
 		{
 			env();
-			continue;
-		}
-
-		if (my_strcmp(argv[0], "cd") == 0)
-		{
-			if (argv[1] == NULL)
-			{
-				chdir(getenv("HOME"));
-			}
-			else if (my_strcmp(argv[1], "-") == 0)
-			{
-				chdir(getenv("HOME"));
-			}
-			else
-			{
-				if (chdir(argv[1]) < 0)
-				{
-					perror("ERROR: changing failed");
-				}
-			}
-
 			continue;
 		}
 		if (my_strcmp(argv[0], "pwd") == 0)
