@@ -9,7 +9,7 @@ int main(void);
 int main(void)
 {
 	char *command = NULL;
-	char *argv[6000] = {NULL};
+	char *args[6000] = {NULL};
 	char *index = NULL;
 	int interactive = 1;
 	size_t size = 0;
@@ -31,25 +31,25 @@ int main(void)
 		index = strtok(command, " \n\t\r");
 		for (i = 0; index; i++)
 		{
-			argv[i] = index;
+			args[i] = index;
 			index = strtok(NULL, " \n\t\r");
 
 		}
-		argv[i] = NULL;
+		args[i] = NULL;
 		i = 0;
-		if (argv[0] == NULL)
+		if (args[0] == NULL)
 			continue;
-		if (my_strcmp(argv[0], "exit") == 0)
+		if (my_strcmp(args[0], "exit") == 0)
 		{
 			free(command);
 			exit(0);
 		}
-		if (my_strcmp(argv[0], "env") == 0)
+		if (my_strcmp(args[0], "env") == 0)
 		{
 			_env();
 			continue;
 		}
-		procmd(argv, command);
+		procmd(args, command);
 		if (interactive == 0)
 			break;
 		/*continue;*/
