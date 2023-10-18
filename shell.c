@@ -39,12 +39,12 @@ int main(void)
 		i = 0;
 		if (args[0] == NULL)
 			continue;
-		if (my_strcmp(args[0], "exit") == 0)
+		if (strcmp(args[0], "exit") == 0)
 		{
 			free(command);
 			exit(0);
 		}
-		if (my_strcmp(args[0], "env") == 0)
+		if (strcmp(args[0], "env") == 0)
 		{
 			_env();
 			continue;
