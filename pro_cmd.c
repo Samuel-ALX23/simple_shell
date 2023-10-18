@@ -20,7 +20,7 @@ void procmd(char **argv, char *cmd)
 		{
 			if (execve("/bin/ls", argv, environ) == -1)
 			{
-				perror("ERROR: Child_fork failed");
+				perror("./hsh");
 				free(cmd);
 				exit(2);
 			}

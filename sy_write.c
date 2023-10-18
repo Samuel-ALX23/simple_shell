@@ -9,7 +9,7 @@
  * Return: bytes always (sucess)
  */
 
-ssize_t my_write(int fd, const void *buf, size_t n)
+void my_write(int fd, const void *buf, size_t n)
 {
 	const char *buffer = buf;
 	size_t bytes = 0;
@@ -20,11 +20,9 @@ ssize_t my_write(int fd, const void *buf, size_t n)
 
 		if (result == -1)
 		{
-			return (-1);
+			return;
 		}
 
 		bytes += result;
 	}
-
-	return (bytes);
 }
