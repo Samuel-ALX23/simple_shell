@@ -11,7 +11,6 @@ int main(void)
 	char *command = NULL;
 	char *argv[6000] = {NULL};
 	char *index = NULL;
-	char cwd[1024];
 	int interactive = 1;
 	size_t size = 0;
 	ssize_t get_byte = 0;
@@ -49,16 +48,6 @@ int main(void)
 		if (my_strcmp(argv[0], "env") == 0)
 		{
 			env();
-			continue;
-		}
-		if (my_strcmp(argv[0], "pwd") == 0)
-		{
-
-			getcwd(cwd, sizeof(cwd));
-			my_write(1, cwd, my_strlen(cwd));
-			my_write(1, "\n", 1);
-
-
 			continue;
 		}
 		procmd(argv, command);
