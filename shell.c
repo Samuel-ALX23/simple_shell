@@ -25,7 +25,6 @@ int main(void)
 		get_byte = getline(&command, &size, stdin);
 		if (get_byte == -1)
 		{
-			perror("ERROR: Reading line fail");
 			free(command);
 			exit(0);
 		}
